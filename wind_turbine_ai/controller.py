@@ -115,7 +115,7 @@ class DualVAWTController:
         )
 
         notes = []
-        if snapshot.mode is OperatingMode.BLACKOUT or not snapshot.grid_available:
+        if snapshot.mode is OperatingMode.BLACKOUT:
             notes.append("battery-first operation")
         if snapshot.wind_speed_mph >= 45:
             notes.append("high-wind stability mode")

@@ -124,7 +124,7 @@ class DualVAWTControllerTests(unittest.TestCase):
 
         self.assertGreater(learned.brake_duty_cycle, initial.brake_duty_cycle)
 
-    def test_negative_gust_noise_stays_in_zero_bucket(self) -> None:
+    def test_negative_gust_noise_shares_learning_bucket_with_zero_gust(self) -> None:
         noisy_snapshot = SensorSnapshot(
             wind_speed_mph=20.0,
             gust_frequency_hz=-0.1,
@@ -151,9 +151,23 @@ class DualVAWTControllerTests(unittest.TestCase):
             grid_available=False,
         )
 
-        self.assertEqual(
-            self.controller._profile_key(noisy_snapshot),
-            self.controller._profile_key(zero_snapshot),
+        initial_zero = self.controller.recommend(zero_snapshot)
+        noisy_command = self.controller.recommend(noisy_snapshot)
+        self.controller.record_outcome(
+            noisy_snapshot,
+            noisy_command,
+            measured_voltage=49.0,
+            measured_power_watts=800.0,
+        )
+        learned_zero = self.controller.recommend(zero_snapshot)
+
+        self.assertGreater(
+            learned_zero.transmission_ratio,
+            initial_zero.transmission_ratio,
+        )
+        self.assertLess(
+            learned_zero.load_resistance_ohms,
+            initial_zero.load_resistance_ohms,
         )
 
     def test_learning_profile_reduces_braking_after_under_target_outcome(self) -> None:
