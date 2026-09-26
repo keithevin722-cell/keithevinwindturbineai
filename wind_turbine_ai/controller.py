@@ -81,6 +81,7 @@ class DualVAWTController:
         )
         transmission_ratio = _clamp(
             (self.target_generator_rpm / max(average_turbine_rpm, 1.0))
+            + ((target_turbine_rpm - average_turbine_rpm) / max(target_turbine_rpm, 1.0))
             + learned.transmission_bias,
             1.2,
             6.0,
@@ -160,8 +161,8 @@ class DualVAWTController:
             resistance_step = 0.0
 
         brake_step = _clamp(
-            max(0.0, voltage_gap) * 0.08
-            + max(0.0, snapshot.generator_rpm - self.target_generator_rpm) / 800.0,
+            (voltage_gap * 0.04)
+            + ((snapshot.generator_rpm - self.target_generator_rpm) / 800.0),
             -0.1,
             0.2,
         )

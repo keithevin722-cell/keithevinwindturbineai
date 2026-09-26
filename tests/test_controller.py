@@ -156,6 +156,31 @@ class DualVAWTControllerTests(unittest.TestCase):
             self.controller._profile_key(zero_snapshot),
         )
 
+    def test_learning_profile_reduces_braking_after_under_target_outcome(self) -> None:
+        snapshot = SensorSnapshot(
+            wind_speed_mph=26.0,
+            gust_frequency_hz=1.0,
+            turbine_a_rpm=104.0,
+            turbine_b_rpm=106.0,
+            generator_rpm=340.0,
+            battery_soc=0.7,
+            battery_voltage=55.0,
+            battery_temp_c=24.0,
+            mode=OperatingMode.GRID_TIED,
+            grid_available=True,
+        )
+
+        initial = self.controller.recommend(snapshot)
+        self.controller.record_outcome(
+            snapshot,
+            initial,
+            measured_voltage=50.0,
+            measured_power_watts=1800.0,
+        )
+        learned = self.controller.recommend(snapshot)
+
+        self.assertLess(learned.brake_duty_cycle, initial.brake_duty_cycle)
+
 
 if __name__ == "__main__":
     unittest.main()
