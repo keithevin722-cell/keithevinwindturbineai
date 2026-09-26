@@ -124,6 +124,38 @@ class DualVAWTControllerTests(unittest.TestCase):
 
         self.assertGreater(learned.brake_duty_cycle, initial.brake_duty_cycle)
 
+    def test_negative_gust_noise_stays_in_zero_bucket(self) -> None:
+        noisy_snapshot = SensorSnapshot(
+            wind_speed_mph=20.0,
+            gust_frequency_hz=-0.1,
+            turbine_a_rpm=72.0,
+            turbine_b_rpm=74.0,
+            generator_rpm=330.0,
+            battery_soc=0.5,
+            battery_voltage=52.0,
+            battery_temp_c=21.0,
+            mode=OperatingMode.BLACKOUT,
+            grid_available=False,
+        )
+
+        zero_snapshot = SensorSnapshot(
+            wind_speed_mph=20.0,
+            gust_frequency_hz=0.0,
+            turbine_a_rpm=72.0,
+            turbine_b_rpm=74.0,
+            generator_rpm=330.0,
+            battery_soc=0.5,
+            battery_voltage=52.0,
+            battery_temp_c=21.0,
+            mode=OperatingMode.BLACKOUT,
+            grid_available=False,
+        )
+
+        self.assertEqual(
+            self.controller._profile_key(noisy_snapshot),
+            self.controller._profile_key(zero_snapshot),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

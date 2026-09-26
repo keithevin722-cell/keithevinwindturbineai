@@ -197,7 +197,10 @@ class DualVAWTController:
         )
 
     def _profile_key(self, snapshot: SensorSnapshot) -> tuple[int, int]:
-        return (int(snapshot.wind_speed_mph // 5), int(snapshot.gust_frequency_hz // 1))
+        return (
+            int(max(snapshot.wind_speed_mph, 0.0) // 5),
+            int(max(snapshot.gust_frequency_hz, 0.0) // 1),
+        )
 
     def _target_power(self, snapshot: SensorSnapshot) -> float:
         mode_multiplier = 0.85 if snapshot.mode is OperatingMode.BLACKOUT else 1.0
