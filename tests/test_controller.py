@@ -99,6 +99,31 @@ class DualVAWTControllerTests(unittest.TestCase):
         self.assertGreater(learned.transmission_ratio, initial.transmission_ratio)
         self.assertLess(learned.load_resistance_ohms, initial.load_resistance_ohms)
 
+    def test_learning_profile_increases_braking_after_over_voltage(self) -> None:
+        snapshot = SensorSnapshot(
+            wind_speed_mph=26.0,
+            gust_frequency_hz=1.0,
+            turbine_a_rpm=104.0,
+            turbine_b_rpm=106.0,
+            generator_rpm=520.0,
+            battery_soc=0.74,
+            battery_voltage=55.2,
+            battery_temp_c=24.0,
+            mode=OperatingMode.GRID_TIED,
+            grid_available=True,
+        )
+
+        initial = self.controller.recommend(snapshot)
+        self.controller.record_outcome(
+            snapshot,
+            initial,
+            measured_voltage=58.0,
+            measured_power_watts=2400.0,
+        )
+        learned = self.controller.recommend(snapshot)
+
+        self.assertGreater(learned.brake_duty_cycle, initial.brake_duty_cycle)
+
 
 if __name__ == "__main__":
     unittest.main()

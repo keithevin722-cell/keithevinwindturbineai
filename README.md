@@ -39,7 +39,7 @@ controller.record_outcome(snapshot, command, measured_voltage=53.0, measured_pow
 
 - prefers battery-first operation during blackout conditions
 - switches to star wiring at lower generator RPM and delta at higher RPM
-- engages emergency braking at 60 mph wind, excessive RPM, high vibration, or battery overheating
+- engages emergency braking at 60+ mph wind, 180+ turbine RPM, 900+ generator RPM, 2.5+ g vibration, or 55+ °C battery temperature
 - stores learned transmission, resistance, and braking offsets by wind/gust bucket
 
 ## Testing

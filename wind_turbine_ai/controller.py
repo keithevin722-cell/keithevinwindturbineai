@@ -137,6 +137,9 @@ class DualVAWTController:
         measured_voltage: float,
         measured_power_watts: float,
     ) -> None:
+        if command.emergency_brake:
+            return
+
         profile = self.learned_adjustments.setdefault(
             self._profile_key(snapshot), LearnedAdjustment()
         )
@@ -144,25 +147,37 @@ class DualVAWTController:
         power_gap = target_power - measured_power_watts
         voltage_gap = measured_voltage - self.target_battery_voltage
 
+        transmission_step = _clamp(power_gap / 3000.0, -0.2, 0.2)
+        if command.transmission_ratio >= 5.5 and transmission_step > 0:
+            transmission_step *= 0.5
+
+        resistance_step = _clamp(
+            (-power_gap / 2500.0) + (voltage_gap * 0.5), -2.0, 2.0
+        )
+        if command.load_resistance_ohms <= 1.0 and resistance_step < 0:
+            resistance_step = 0.0
+
+        brake_step = _clamp(
+            max(0.0, voltage_gap) * 0.08
+            + max(0.0, snapshot.generator_rpm - self.target_generator_rpm) / 800.0,
+            -0.1,
+            0.2,
+        )
+        if command.brake_duty_cycle >= 0.9 and brake_step > 0:
+            brake_step *= 0.5
+
         profile.transmission_bias = _clamp(
-            profile.transmission_bias + _clamp(power_gap / 3000.0, -0.2, 0.2),
+            profile.transmission_bias + transmission_step,
             -1.0,
             1.0,
         )
         profile.resistance_bias = _clamp(
-            profile.resistance_bias
-            + _clamp((-power_gap / 2500.0) + (voltage_gap * 0.5), -2.0, 2.0),
+            profile.resistance_bias + resistance_step,
             -8.0,
             8.0,
         )
         profile.brake_bias = _clamp(
-            profile.brake_bias
-            + _clamp(
-                max(0.0, voltage_gap) * 0.08
-                + max(0.0, snapshot.generator_rpm - self.target_generator_rpm) / 800.0,
-                -0.1,
-                0.2,
-            ),
+            profile.brake_bias + brake_step,
             -0.5,
             0.8,
         )
