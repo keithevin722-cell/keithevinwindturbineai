@@ -195,6 +195,59 @@ class DualVAWTControllerTests(unittest.TestCase):
 
         self.assertLess(learned.brake_duty_cycle, initial.brake_duty_cycle)
 
+    def test_grid_tied_without_grid_uses_lower_learning_target(self) -> None:
+        grid_on_controller = DualVAWTController()
+        grid_off_controller = DualVAWTController()
+
+        grid_on_snapshot = SensorSnapshot(
+            wind_speed_mph=24.0,
+            gust_frequency_hz=1.0,
+            turbine_a_rpm=82.0,
+            turbine_b_rpm=84.0,
+            generator_rpm=390.0,
+            battery_soc=0.58,
+            battery_voltage=52.5,
+            battery_temp_c=23.0,
+            mode=OperatingMode.GRID_TIED,
+            grid_available=True,
+        )
+        grid_off_snapshot = SensorSnapshot(
+            wind_speed_mph=24.0,
+            gust_frequency_hz=1.0,
+            turbine_a_rpm=82.0,
+            turbine_b_rpm=84.0,
+            generator_rpm=390.0,
+            battery_soc=0.58,
+            battery_voltage=52.5,
+            battery_temp_c=23.0,
+            mode=OperatingMode.GRID_TIED,
+            grid_available=False,
+        )
+
+        grid_on_initial = grid_on_controller.recommend(grid_on_snapshot)
+        grid_off_initial = grid_off_controller.recommend(grid_off_snapshot)
+
+        grid_on_controller.record_outcome(
+            grid_on_snapshot,
+            grid_on_initial,
+            measured_voltage=49.0,
+            measured_power_watts=4300.0,
+        )
+        grid_off_controller.record_outcome(
+            grid_off_snapshot,
+            grid_off_initial,
+            measured_voltage=49.0,
+            measured_power_watts=4300.0,
+        )
+
+        grid_on_learned = grid_on_controller.recommend(grid_on_snapshot)
+        grid_off_learned = grid_off_controller.recommend(grid_off_snapshot)
+
+        self.assertGreater(
+            grid_on_learned.transmission_ratio - grid_on_initial.transmission_ratio,
+            grid_off_learned.transmission_ratio - grid_off_initial.transmission_ratio,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

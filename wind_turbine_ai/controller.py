@@ -204,5 +204,9 @@ class DualVAWTController:
         )
 
     def _target_power(self, snapshot: SensorSnapshot) -> float:
-        mode_multiplier = 0.85 if snapshot.mode is OperatingMode.BLACKOUT else 1.0
+        mode_multiplier = (
+            0.85
+            if snapshot.mode is OperatingMode.BLACKOUT or not snapshot.grid_available
+            else 1.0
+        )
         return _clamp((snapshot.wind_speed_mph**2) * 8.5 * mode_multiplier, 250.0, 6500.0)
