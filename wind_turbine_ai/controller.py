@@ -147,8 +147,10 @@ class DualVAWTController:
         power_gap = target_power - measured_power_watts
         voltage_gap = measured_voltage - self.target_battery_voltage
 
-        transmission_step = _clamp(power_gap / 3000.0, -0.2, 0.2)
+        transmission_step = _clamp(-power_gap / 3000.0, -0.2, 0.2)
         if command.transmission_ratio >= 5.5 and transmission_step > 0:
+            transmission_step *= 0.5
+        if command.transmission_ratio <= 1.5 and transmission_step < 0:
             transmission_step *= 0.5
 
         resistance_step = _clamp(
