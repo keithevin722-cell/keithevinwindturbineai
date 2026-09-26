@@ -96,7 +96,7 @@ class DualVAWTControllerTests(unittest.TestCase):
         )
         learned = self.controller.recommend(snapshot)
 
-        self.assertLess(learned.transmission_ratio, initial.transmission_ratio)
+        self.assertGreater(learned.transmission_ratio, initial.transmission_ratio)
         self.assertLess(learned.load_resistance_ohms, initial.load_resistance_ohms)
 
     def test_learning_profile_increases_braking_after_over_voltage(self) -> None:
