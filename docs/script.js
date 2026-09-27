@@ -68,6 +68,7 @@
       return res.json();
     })
     .then(function (rows) {
+      if (!Array.isArray(rows)) throw new Error('Invalid BOM payload');
       bomBody.innerHTML = '';
       rows.forEach(function (row) {
         var tr = document.createElement('tr');
