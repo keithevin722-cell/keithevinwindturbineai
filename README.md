@@ -66,7 +66,7 @@ point for hardware integration.
    cd keithevinwindturbineai
    ```
 
-3. Move to the main branch before making or deploying changes:
+3. Sync your local `main` branch before making or deploying changes:
 
    ```bash
    git checkout main
@@ -154,21 +154,27 @@ python -m unittest discover -s tests
 
 ## Push updates
 
-Always push updates from the `main` branch:
+Use `main` as the branch you sync from, then push changes from a feature branch for review:
 
 ```bash
 git checkout main
 git pull origin main
+git checkout -b update-build-docs
 git status
 git add README.md wind_turbine_ai tests
 git commit -m "Update build and installation details"
-git push origin main
+git push -u origin update-build-docs
 ```
+
+Then open a pull request and merge the approved change back into `main`.
 
 If you only changed documentation, you can limit the add step:
 
 ```bash
+git checkout main
+git pull origin main
+git checkout -b expand-readme-details
 git add README.md
 git commit -m "Expand README installation details"
-git push origin main
+git push -u origin expand-readme-details
 ```
