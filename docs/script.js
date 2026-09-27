@@ -9,6 +9,15 @@
     }
   }
 
+  function sourceLabel(url) {
+    try {
+      var parsed = new URL(url);
+      return parsed.pathname.split('/').pop() || parsed.href;
+    } catch (e) {
+      return 'BOM source file';
+    }
+  }
+
   var toggle = document.getElementById('nav-toggle');
   var sidebar = document.getElementById('sidebar');
   if (toggle && sidebar) {
@@ -25,7 +34,35 @@
   if (!bomBody) return;
 
   var source = bomBody.getAttribute('data-source') || '../data/parts-list.json';
-  fetch(source)
+  var safeSourceUrl = toSafeHttpUrl(source);
+
+  function renderFallback() {
+    bomBody.innerHTML = '';
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.colSpan = 6;
+    td.appendChild(document.createTextNode('Unable to load parts list data. Open '));
+
+    if (safeSourceUrl) {
+      var link = document.createElement('a');
+      link.href = safeSourceUrl;
+      link.textContent = sourceLabel(safeSourceUrl);
+      td.appendChild(link);
+    } else {
+      td.appendChild(document.createTextNode('the BOM source file'));
+    }
+    td.appendChild(document.createTextNode(' directly.'));
+
+    tr.appendChild(td);
+    bomBody.appendChild(tr);
+  }
+
+  if (!safeSourceUrl) {
+    renderFallback();
+    return;
+  }
+
+  fetch(safeSourceUrl)
     .then(function (res) {
       if (!res.ok) throw new Error('Failed to load BOM data');
       return res.json();
@@ -67,25 +104,5 @@
         bomBody.appendChild(tr);
       });
     })
-    .catch(function () {
-      bomBody.innerHTML = '';
-      var tr = document.createElement('tr');
-      var td = document.createElement('td');
-      td.colSpan = 6;
-      td.appendChild(document.createTextNode('Unable to load parts list data. Open '));
-
-      var safeSourceUrl = toSafeHttpUrl(source);
-      if (safeSourceUrl) {
-        var link = document.createElement('a');
-        link.href = safeSourceUrl;
-        link.textContent = 'parts-list.json';
-        td.appendChild(link);
-      } else {
-        td.appendChild(document.createTextNode('parts-list.json'));
-      }
-      td.appendChild(document.createTextNode(' directly.'));
-
-      tr.appendChild(td);
-      bomBody.appendChild(tr);
-    });
+    .catch(renderFallback);
 })();
