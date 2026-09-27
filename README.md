@@ -12,6 +12,68 @@ Minimal Python control logic for a dual-VAWT wind system with:
 The controller is intentionally small and dependency-free so it can serve as a starting
 point for hardware integration.
 
+## Build and install the equipment
+
+> This repository provides control software logic only. Mechanical construction,
+> high-current wiring, braking circuits, battery systems, and grid interconnection
+> should be reviewed by qualified mechanical and electrical professionals before use.
+
+1. Build the two VAWT assemblies with matching height, blade count, and airfoil geometry.
+2. Mount both turbines on independent, rigid supports sized for gusts up to and above the
+   intended 60 mph operating envelope.
+3. Couple both turbines through the shared chain and transmission so the generator can be
+   driven while still allowing ratio changes for RPM optimization.
+4. Install sensors for wind speed, gust frequency, turbine RPM, generator RPM, battery
+   voltage, battery temperature, and vibration.
+5. Wire controllable hardware interfaces for:
+   - transmission or ratio control
+   - generator star/delta switching
+   - emergency electronic braking
+   - adjustable dump/load resistance for amperage and RPM control
+6. Connect the battery system and any grid-tied inverter equipment only after verifying
+   voltage, current, grounding, overcurrent protection, and shutdown behavior.
+7. Perform dry-run checks with the generator unloaded before enabling automatic control.
+
+## Install the software
+
+1. Install Python 3.12 or newer.
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/keithevin722-cell/keithevinwindturbineai.git
+   cd keithevinwindturbineai
+   ```
+
+3. Optionally create and activate a virtual environment:
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
+
+4. Run the tests:
+
+   ```bash
+   python -m unittest discover -s tests
+   ```
+
+5. Import `DualVAWTController` into the computer or embedded Python environment that will
+   read sensor values and issue commands to relays, braking electronics, and load controls.
+
+## Install into a control system
+
+1. Read live sensor data and map it into a `SensorSnapshot`.
+2. Call `controller.recommend(snapshot)` on each control cycle.
+3. Translate the returned `ControlCommand` into hardware actions:
+   - transmission ratio adjustment
+   - star/delta contactor selection
+   - brake duty cycle output
+   - load resistance setting
+4. After each cycle or test window, call `record_outcome(...)` with measured voltage and
+   power so the controller can adapt by wind/gust bucket.
+5. Start in supervised/manual mode and confirm emergency-brake behavior before allowing
+   unattended operation.
+
 ## Usage
 
 ```python
@@ -46,4 +108,15 @@ controller.record_outcome(snapshot, command, measured_voltage=53.0, measured_pow
 
 ```bash
 python -m unittest discover -s tests
+```
+
+## Push updates
+
+After making documentation or code changes locally:
+
+```bash
+git status
+git add README.md wind_turbine_ai tests
+git commit -m "Describe build and installation workflow"
+git push
 ```
