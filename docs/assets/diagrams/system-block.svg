@@ -7,7 +7,7 @@
   <rect x="840" y="40" width="130" height="70" fill="#fff4e6" stroke="#1f2937"/><text x="905" y="70" text-anchor="middle" font-size="14">Dump Load</text><text x="905" y="90" text-anchor="middle" font-size="12">12-10 AWG</text>
   <rect x="840" y="150" width="130" height="70" fill="#e8ffe8" stroke="#1f2937"/><text x="905" y="180" text-anchor="middle" font-size="14">Battery Bank</text><text x="905" y="200" text-anchor="middle" font-size="12">24V DC</text>
   <rect x="840" y="260" width="130" height="70" fill="#f3f0ff" stroke="#1f2937"/><text x="905" y="290" text-anchor="middle" font-size="14">Inverter / DC Loads</text><text x="905" y="310" text-anchor="middle" font-size="12">Load side</text>
-  <line x1="160" y1="155" x2="220" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/><text x="190" y="145" text-anchor="middle" font-size="11" fill="#0b6dbb">3× AC, 10 AWG (Blk/Brn/Grn)</text>
+  <line x1="160" y1="155" x2="220" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/><text x="190" y="145" text-anchor="middle" font-size="11" fill="#0b6dbb">3× AC, 10 AWG (Black/Brown/Blue)</text>
   <line x1="360" y1="155" x2="420" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/><text x="390" y="145" text-anchor="middle" font-size="11" fill="#b91c1c">DC +/−, 8 AWG (Red/Black)</text>
   <line x1="580" y1="155" x2="640" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
   <line x1="800" y1="145" x2="840" y2="90" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>

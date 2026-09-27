@@ -13,7 +13,7 @@ Published URL (placeholder):
 - `/docs` - GitHub Pages-ready multi-page book website (no build step required)
 - `/docs/chapters` - all chapter pages
 - `/docs/assets/diagrams` - standalone SVG wiring diagrams
-- `/data/parts-list.csv` and `/data/parts-list.json` - machine-readable bill of materials
+- `/docs/data/parts-list.csv` and `/docs/data/parts-list.json` - machine-readable bill of materials
 
 ## Enable GitHub Pages from `/docs`
 
