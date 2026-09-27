@@ -57,7 +57,12 @@
     bomBody.appendChild(tr);
   }
 
-  if (!safeSourceUrl || window.location.protocol === "file:") {
+  if (!safeSourceUrl) {
+    renderFallback();
+    return;
+  }
+
+  if (window.location.protocol === "file:") {
     return;
   }
 
