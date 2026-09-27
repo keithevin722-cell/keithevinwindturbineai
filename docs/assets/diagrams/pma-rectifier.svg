@@ -1,4 +1,6 @@
-<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3-phase PMA to bridge rectifier wiring">
+<svg aria-labelledby="pma-rect-title pma-rect-title-desc" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3-phase PMA to bridge rectifier wiring">
+  <title id="pma-rect-title">3-phase PMA to bridge rectifier wiring</title>
+  <desc id="pma-rect-title-desc">Detailed diagram of three-phase PMA wiring into a bridge rectifier and DC outputs.</desc>
   <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
   <rect x="40" y="80" width="220" height="140" fill="#e6f2ff" stroke="#1f2937"/><text x="150" y="105" text-anchor="middle" font-size="14">PMA Stator</text>
   <circle cx="90" cy="145" r="6" fill="#000"/><circle cx="90" cy="170" r="6" fill="#000"/><circle cx="90" cy="195" r="6" fill="#000"/>

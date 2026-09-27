@@ -8,7 +8,9 @@
 <p>Download standalone diagrams from <a href="../assets/diagrams/system-block.svg">system-block.svg</a>, <a href="../assets/diagrams/pma-rectifier.svg">pma-rectifier.svg</a>, and <a href="../assets/diagrams/controller-battery.svg">controller-battery.svg</a>.</p>
 
 <h2>1) Overall system block diagram</h2>
-<svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overall VAWT electrical block diagram">
+<svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sys-title sys-desc">
+  <title id="sys-title">Overall VAWT electrical block diagram</title>
+  <desc id="sys-desc">Shows PMA output flowing through rectifier, disconnect and charge controller to dump load, battery bank, and inverter or DC loads with grounding.</desc>
   <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
   <rect x="20" y="120" width="140" height="70" fill="#e6f2ff" stroke="#1f2937"/><text x="90" y="150" text-anchor="middle" font-size="14">Turbine / PMA</text><text x="90" y="170" text-anchor="middle" font-size="12">3-phase AC</text>
   <rect x="220" y="120" width="140" height="70" fill="#e6f2ff" stroke="#1f2937"/><text x="290" y="150" text-anchor="middle" font-size="14">Rectifier</text><text x="290" y="170" text-anchor="middle" font-size="12">AC → DC</text>
@@ -29,7 +31,9 @@
 </svg>
 
 <h2>2) 3-phase PMA to bridge rectifier detail</h2>
-<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3-phase PMA to bridge rectifier wiring">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pma-title pma-desc">
+  <title id="pma-title">Three-phase PMA to bridge rectifier wiring</title>
+  <desc id="pma-desc">Shows phase A, B, and C AC leads from PMA into rectifier and DC positive and negative outputs toward controller and breaker.</desc>
   <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
   <rect x="40" y="80" width="220" height="140" fill="#e6f2ff" stroke="#1f2937"/><text x="150" y="105" text-anchor="middle" font-size="14">PMA Stator</text>
   <circle cx="90" cy="145" r="6" fill="#000"/><circle cx="90" cy="170" r="6" fill="#000"/><circle cx="90" cy="195" r="6" fill="#000"/>
@@ -47,7 +51,9 @@
 </svg>
 
 <h2>3) Charge controller to battery bank detail</h2>
-<svg viewBox="0 0 940 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Charge controller to battery with fuses">
+<svg viewBox="0 0 940 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="bat-title bat-desc">
+  <title id="bat-title">Charge controller to battery bank wiring with fuses</title>
+  <desc id="bat-desc">Shows battery positive and negative conductors, fuse placement, optional secondary fuse, dump load path, and grounding bond.</desc>
   <defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
   <rect x="40" y="90" width="250" height="140" fill="#e6f2ff" stroke="#1f2937"/><text x="165" y="118" text-anchor="middle" font-size="14">Wind Charge Controller</text><text x="165" y="138" text-anchor="middle" font-size="12">Batt + / Batt - / Dump load</text>
   <rect x="360" y="70" width="120" height="50" fill="#fff" stroke="#1f2937"/><text x="420" y="100" text-anchor="middle" font-size="12">Fuse 1</text>
