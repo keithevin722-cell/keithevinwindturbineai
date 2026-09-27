@@ -28,6 +28,8 @@ If Pages is not enabled yet:
 
 This repo includes `.github/workflows/pages.yml` to deploy static content from `/docs` using GitHub Actions Pages.
 
+> Choose one deployment mode: either **Deploy from a branch (`/docs`)** in repository settings, or **GitHub Actions Pages workflow**. Do not enable both at the same time.
+
 ## Safety and legal disclaimer
 
 This content is educational and not professional engineering, electrical, or legal advice. Always follow local electrical/building codes, obtain required permits, and verify designs for your site conditions. Wind turbines, batteries, and power electronics can cause severe injury, fire, and property damage if built or operated incorrectly.

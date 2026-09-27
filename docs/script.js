@@ -1,4 +1,14 @@
 (function () {
+  function toSafeHttpUrl(value) {
+    if (!value) return null;
+    try {
+      var parsed = new URL(value, window.location.href);
+      return parsed.protocol === 'http:' || parsed.protocol === 'https:' ? parsed.href : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
   var toggle = document.getElementById('nav-toggle');
   var sidebar = document.getElementById('sidebar');
   if (toggle && sidebar) {
@@ -37,14 +47,17 @@
         cols.forEach(function (val, index) {
           var td = document.createElement('td');
           if (index === 4) {
-            var a = document.createElement('a');
-            a.href = row.example_purchase_link || '#';
-            a.textContent = row.example_purchase_link ? 'Example link' : 'N/A';
-            a.rel = 'noopener noreferrer';
-            if (row.example_purchase_link) {
+            var safePurchaseUrl = toSafeHttpUrl(row.example_purchase_link);
+            if (safePurchaseUrl) {
+              var a = document.createElement('a');
+              a.href = safePurchaseUrl;
+              a.textContent = 'Example link';
+              a.rel = 'noopener noreferrer';
               a.target = '_blank';
+              td.appendChild(a);
+            } else {
+              td.textContent = 'N/A';
             }
-            td.appendChild(a);
           } else {
             td.textContent = val;
           }
@@ -55,6 +68,24 @@
       });
     })
     .catch(function () {
-      bomBody.innerHTML = '<tr><td colspan="6">Unable to load parts list data. Open <a href="' + source + '">parts-list.json</a> directly.</td></tr>';
+      bomBody.innerHTML = '';
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      td.colSpan = 6;
+      td.appendChild(document.createTextNode('Unable to load parts list data. Open '));
+
+      var safeSourceUrl = toSafeHttpUrl(source);
+      if (safeSourceUrl) {
+        var link = document.createElement('a');
+        link.href = safeSourceUrl;
+        link.textContent = 'parts-list.json';
+        td.appendChild(link);
+      } else {
+        td.appendChild(document.createTextNode('parts-list.json'));
+      }
+      td.appendChild(document.createTextNode(' directly.'));
+
+      tr.appendChild(td);
+      bomBody.appendChild(tr);
     });
 })();
