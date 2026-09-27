@@ -57,8 +57,7 @@
     bomBody.appendChild(tr);
   }
 
-  if (!safeSourceUrl) {
-    renderFallback();
+  if (!safeSourceUrl || window.location.protocol === "file:") {
     return;
   }
 
@@ -105,5 +104,7 @@
         bomBody.appendChild(tr);
       });
     })
-    .catch(renderFallback);
+    .catch(function () {
+      // Keep static fallback table rendered in HTML when fetch is unavailable.
+    });
 })();
