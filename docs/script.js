@@ -63,6 +63,7 @@
   }
 
   if (window.location.protocol === "file:") {
+    renderFallback();
     return;
   }
 
