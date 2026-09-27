@@ -55,6 +55,6 @@
       });
     })
     .catch(function () {
-      bomBody.innerHTML = '<tr><td colspan="6">Unable to load parts list data. Open <a href="../data/parts-list.json">parts-list.json</a> directly.</td></tr>';
+      bomBody.innerHTML = '<tr><td colspan="6">Unable to load parts list data. Open <a href="' + source + '">parts-list.json</a> directly.</td></tr>';
     });
 })();
