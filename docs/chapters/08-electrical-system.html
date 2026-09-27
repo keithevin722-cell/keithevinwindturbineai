@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chapter 8 - Electrical System & Wiring</title><link rel="stylesheet" href="../style.css"></head>
+<body><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Chapters"><h1>The DIY VAWT Book</h1><ul>
+<li><a href="../index.html">Home</a></li><li><a href="01-introduction.html">1. Introduction</a></li><li><a href="02-design-sizing.html">2. Design &amp; Sizing</a></li><li><a href="03-tools-safety.html">3. Tools &amp; Safety</a></li><li><a href="04-parts-list.html">4. Parts List</a></li><li><a href="05-blade-rotor.html">5. Blade &amp; Rotor</a></li><li><a href="06-shaft-frame.html">6. Shaft, Bearings &amp; Frame</a></li><li><a href="07-generator-selection.html">7. Generator Selection</a></li><li><a href="08-electrical-system.html">8. Electrical &amp; Wiring</a></li><li><a href="09-assembly-installation.html">9. Assembly &amp; Installation</a></li><li><a href="10-testing-maintenance.html">10. Testing &amp; Maintenance</a></li><li><a href="11-glossary.html">Glossary</a></li><li><a href="12-further-reading.html">Further Reading</a></li>
+</ul></aside><div class="content"><button id="nav-toggle" class="mobile-toggle" aria-controls="sidebar" aria-expanded="false">Toggle chapter navigation</button><main>
+<header class="page-header"><h1>Chapter 8: Electrical System &amp; Wiring</h1></header>
+<div class="warning"><strong>Electrical danger:</strong> Improper wiring can cause shock, fire, battery thermal events, or equipment damage. Use correct fusing, disconnects, cable sizing, and grounding. De-energize before service.</div>
+<p>Download standalone diagrams from <a href="../assets/diagrams/system-block.svg">system-block.svg</a>, <a href="../assets/diagrams/pma-rectifier.svg">pma-rectifier.svg</a>, and <a href="../assets/diagrams/controller-battery.svg">controller-battery.svg</a>.</p>
+
+<h2>1) Overall system block diagram</h2>
+<div class="table-wrap">
+<svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-labelledby="sys-title sys-desc">
+  <title id="sys-title">Overall VAWT electrical block diagram</title>
+  <desc id="sys-desc">Shows PMA output flowing through rectifier, disconnect and charge controller to dump load, battery bank, and inverter or DC loads with grounding.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
+  <rect x="20" y="120" width="140" height="70" fill="#e6f2ff" stroke="#1f2937"/><text x="90" y="150" text-anchor="middle" font-size="14">Turbine / PMA</text><text x="90" y="170" text-anchor="middle" font-size="12">3-phase AC</text>
+  <rect x="220" y="120" width="140" height="70" fill="#e6f2ff" stroke="#1f2937"/><text x="290" y="150" text-anchor="middle" font-size="14">Rectifier</text><text x="290" y="170" text-anchor="middle" font-size="12">AC → DC</text>
+  <rect x="420" y="120" width="160" height="70" fill="#e6f2ff" stroke="#1f2937"/><text x="500" y="150" text-anchor="middle" font-size="14">Disconnect / Breaker</text><text x="500" y="170" text-anchor="middle" font-size="12">DC rated</text>
+  <rect x="640" y="120" width="160" height="70" fill="#e6f2ff" stroke="#1f2937"/><text x="720" y="150" text-anchor="middle" font-size="14">Wind Charge Controller</text><text x="720" y="170" text-anchor="middle" font-size="12">Diversion capable</text>
+  <rect x="840" y="40" width="130" height="70" fill="#fff4e6" stroke="#1f2937"/><text x="905" y="70" text-anchor="middle" font-size="14">Dump Load</text><text x="905" y="90" text-anchor="middle" font-size="12">12-10 AWG</text>
+  <rect x="840" y="150" width="130" height="70" fill="#e8ffe8" stroke="#1f2937"/><text x="905" y="180" text-anchor="middle" font-size="14">Battery Bank</text><text x="905" y="200" text-anchor="middle" font-size="12">24V DC</text>
+  <rect x="840" y="260" width="130" height="70" fill="#f3f0ff" stroke="#1f2937"/><text x="905" y="290" text-anchor="middle" font-size="14">Inverter / DC Loads</text><text x="905" y="310" text-anchor="middle" font-size="12">Load side</text>
+  <line x1="160" y1="155" x2="220" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/><text x="190" y="145" text-anchor="middle" font-size="11" fill="#0b6dbb">3× AC, 10 AWG (Black/Brown/Blue)</text>
+  <line x1="360" y1="155" x2="420" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/><text x="390" y="145" text-anchor="middle" font-size="11" fill="#b91c1c">DC +/−, 8 AWG (Red/Black)</text>
+  <line x1="580" y1="155" x2="640" y2="155" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="800" y1="145" x2="840" y2="90" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="800" y1="165" x2="840" y2="185" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="905" y1="220" x2="905" y2="260" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="90" y1="190" x2="90" y2="340" stroke="#065f46" stroke-width="2"/><line x1="290" y1="190" x2="290" y2="340" stroke="#065f46" stroke-width="2"/><line x1="500" y1="190" x2="500" y2="340" stroke="#065f46" stroke-width="2"/><line x1="720" y1="190" x2="720" y2="340" stroke="#065f46" stroke-width="2"/><line x1="905" y1="220" x2="905" y2="340" stroke="#065f46" stroke-width="2"/>
+  <line x1="60" y1="340" x2="935" y2="340" stroke="#065f46" stroke-width="3"/><text x="500" y="356" text-anchor="middle" font-size="12">Ground bond (Green/Yellow, per local code)</text>
+  <rect x="20" y="20" width="300" height="85" fill="#ffffff" stroke="#94a3b8"/><text x="30" y="42" font-size="12">Legend:</text><text x="30" y="60" font-size="12">Blue note = AC side wires</text><text x="30" y="76" font-size="12">Red note = DC power wires</text><text x="30" y="92" font-size="12">Green lines = grounding conductor</text>
+</svg>
+</div>
+
+<h2>2) 3-phase PMA to bridge rectifier detail</h2>
+<div class="table-wrap">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-labelledby="pma-title pma-desc">
+  <title id="pma-title">Three-phase PMA to bridge rectifier wiring</title>
+  <desc id="pma-desc">Shows phase A, B, and C AC leads from PMA into rectifier and DC positive and negative outputs toward controller and breaker.</desc>
+  <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
+  <rect x="40" y="80" width="220" height="140" fill="#e6f2ff" stroke="#1f2937"/><text x="150" y="105" text-anchor="middle" font-size="14">PMA Stator</text>
+  <circle cx="90" cy="145" r="6" fill="#000"/><circle cx="90" cy="170" r="6" fill="#000"/><circle cx="90" cy="195" r="6" fill="#000"/>
+  <text x="105" y="149" font-size="12">Phase A (Black)</text><text x="105" y="174" font-size="12">Phase B (Brown)</text><text x="105" y="199" font-size="12">Phase C (Blue)</text>
+  <rect x="470" y="70" width="250" height="160" fill="#fff4e6" stroke="#1f2937"/><text x="595" y="95" text-anchor="middle" font-size="14">3-Phase Bridge Rectifier</text>
+  <circle cx="500" cy="130" r="6" fill="#000"/><circle cx="500" cy="160" r="6" fill="#000"/><circle cx="500" cy="190" r="6" fill="#000"/><text x="515" y="134" font-size="12">~</text><text x="515" y="164" font-size="12">~</text><text x="515" y="194" font-size="12">~</text>
+  <circle cx="680" cy="130" r="6" fill="#000"/><circle cx="680" cy="190" r="6" fill="#000"/><text x="695" y="134" font-size="12">+</text><text x="695" y="194" font-size="12">−</text>
+  <line x1="96" y1="145" x2="500" y2="130" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="96" y1="170" x2="500" y2="160" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="96" y1="195" x2="500" y2="190" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="686" y1="130" x2="830" y2="130" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrow2)"/><text x="760" y="120" text-anchor="middle" font-size="12">DC+ to breaker/controller (8 AWG Red)</text>
+  <line x1="686" y1="190" x2="830" y2="190" stroke="#111827" stroke-width="3" marker-end="url(#arrow2)"/><text x="760" y="210" text-anchor="middle" font-size="12">DC− return (8 AWG Black)</text>
+  <rect x="40" y="20" width="350" height="45" fill="#fff" stroke="#94a3b8"/><text x="55" y="47" font-size="12">Use strain relief, weatherproof enclosure, and heatsink per rectifier datasheet.</text>
+  <rect x="540" y="240" width="320" height="45" fill="#fff" stroke="#94a3b8"/><text x="550" y="258" font-size="11">Legend: Black/Brown/Blue = 3-phase AC conductors</text><text x="550" y="274" font-size="11">Red = DC+, Black = DC−</text>
+</svg>
+</div>
+
+<h2>3) Charge controller to battery bank detail</h2>
+<div class="table-wrap">
+<svg viewBox="0 0 940 320" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-labelledby="bat-title bat-desc">
+  <title id="bat-title">Charge controller to battery bank wiring with fuses</title>
+  <desc id="bat-desc">Shows battery positive and negative conductors, fuse placement, optional secondary fuse, dump load path, and grounding bond.</desc>
+  <defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
+  <rect x="40" y="90" width="250" height="140" fill="#e6f2ff" stroke="#1f2937"/><text x="165" y="118" text-anchor="middle" font-size="14">Wind Charge Controller</text><text x="165" y="138" text-anchor="middle" font-size="12">Batt + / Batt - / Dump load</text>
+  <rect x="360" y="70" width="120" height="50" fill="#fff" stroke="#1f2937"/><text x="420" y="100" text-anchor="middle" font-size="12">Fuse 1</text>
+  <rect x="360" y="200" width="120" height="50" fill="#fff" stroke="#1f2937"/><text x="420" y="230" text-anchor="middle" font-size="12">Fuse 2 (optional)</text>
+  <rect x="560" y="80" width="180" height="130" fill="#e8ffe8" stroke="#1f2937"/><text x="650" y="110" text-anchor="middle" font-size="14">Battery Bank 24V</text><text x="650" y="130" text-anchor="middle" font-size="12">2x12V in series</text><text x="650" y="150" text-anchor="middle" font-size="12">Main disconnect nearby</text>
+  <rect x="780" y="40" width="130" height="80" fill="#fff4e6" stroke="#1f2937"/><text x="845" y="72" text-anchor="middle" font-size="13">Dump Load</text><text x="845" y="92" text-anchor="middle" font-size="11">Controller diversion</text>
+  <line x1="290" y1="120" x2="360" y2="95" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrow3)"/>
+  <line x1="480" y1="95" x2="560" y2="95" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrow3)"/>
+  <text x="460" y="80" font-size="12">6-8 AWG Red (+)</text>
+  <line x1="290" y1="180" x2="560" y2="180" stroke="#111827" stroke-width="3" marker-end="url(#arrow3)"/><text x="420" y="196" font-size="12">6-8 AWG Black (−)</text>
+  <line x1="740" y1="95" x2="780" y2="80" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow3)"/>
+  <line x1="650" y1="210" x2="650" y2="290" stroke="#065f46" stroke-width="2"/><line x1="165" y1="230" x2="165" y2="290" stroke="#065f46" stroke-width="2"/><line x1="120" y1="290" x2="700" y2="290" stroke="#065f46" stroke-width="3"/>
+  <text x="420" y="308" text-anchor="middle" font-size="12">Ground bond conductor (green/yellow) per local code and grounding standard</text>
+  <text x="35" y="30" font-size="12">Fusing: place main battery positive fuse as close to battery terminal as practical.</text>
+  <rect x="720" y="230" width="200" height="55" fill="#fff" stroke="#94a3b8"/><text x="730" y="250" font-size="11">Legend: Red = battery positive</text><text x="730" y="266" font-size="11">Black = battery negative</text><text x="730" y="282" font-size="11">Green = grounding bond</text>
+</svg>
+</div>
+
+<nav class="inline-nav"><a href="07-generator-selection.html">← Previous</a><a href="09-assembly-installation.html">Next →</a></nav>
+</main></div></div><script src="../script.js"></script></body></html>

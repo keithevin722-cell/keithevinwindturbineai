@@ -1,0 +1,19 @@
+<svg aria-labelledby="controller-bat-title controller-bat-title-desc" viewBox="0 0 940 320" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false">
+  <title id="controller-bat-title">Charge controller to battery bank wiring with fuses</title>
+  <desc id="controller-bat-title-desc">Detailed diagram of wind charge controller wiring to battery bank with fuse placement and grounding.</desc>
+  <defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#1f2937"/></marker></defs>
+  <rect x="40" y="90" width="250" height="140" fill="#e6f2ff" stroke="#1f2937"/><text x="165" y="118" text-anchor="middle" font-size="14">Wind Charge Controller</text><text x="165" y="138" text-anchor="middle" font-size="12">Batt + / Batt - / Dump load</text>
+  <rect x="360" y="70" width="120" height="50" fill="#fff" stroke="#1f2937"/><text x="420" y="100" text-anchor="middle" font-size="12">Fuse 1</text>
+  <rect x="360" y="200" width="120" height="50" fill="#fff" stroke="#1f2937"/><text x="420" y="230" text-anchor="middle" font-size="12">Fuse 2 (optional)</text>
+  <rect x="560" y="80" width="180" height="130" fill="#e8ffe8" stroke="#1f2937"/><text x="650" y="110" text-anchor="middle" font-size="14">Battery Bank 24V</text><text x="650" y="130" text-anchor="middle" font-size="12">2x12V in series</text><text x="650" y="150" text-anchor="middle" font-size="12">Main disconnect nearby</text>
+  <rect x="780" y="40" width="130" height="80" fill="#fff4e6" stroke="#1f2937"/><text x="845" y="72" text-anchor="middle" font-size="13">Dump Load</text><text x="845" y="92" text-anchor="middle" font-size="11">Controller diversion</text>
+  <line x1="290" y1="120" x2="360" y2="95" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrow3)"/>
+  <line x1="480" y1="95" x2="560" y2="95" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrow3)"/>
+  <text x="460" y="80" font-size="12">6-8 AWG Red (+)</text>
+  <line x1="290" y1="180" x2="560" y2="180" stroke="#111827" stroke-width="3" marker-end="url(#arrow3)"/><text x="420" y="196" font-size="12">6-8 AWG Black (−)</text>
+  <line x1="740" y1="95" x2="780" y2="80" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow3)"/>
+  <line x1="650" y1="210" x2="650" y2="290" stroke="#065f46" stroke-width="2"/><line x1="165" y1="230" x2="165" y2="290" stroke="#065f46" stroke-width="2"/><line x1="120" y1="290" x2="700" y2="290" stroke="#065f46" stroke-width="3"/>
+  <text x="420" y="308" text-anchor="middle" font-size="12">Ground bond conductor (green/yellow) per local code and grounding standard</text>
+  <text x="35" y="30" font-size="12">Fusing: place main battery positive fuse as close to battery terminal as practical.</text>
+  <rect x="720" y="230" width="200" height="55" fill="#fff" stroke="#94a3b8"/><text x="730" y="250" font-size="11">Legend: Red = battery positive</text><text x="730" y="266" font-size="11">Black = battery negative</text><text x="730" y="282" font-size="11">Green = grounding bond</text>
+</svg>
