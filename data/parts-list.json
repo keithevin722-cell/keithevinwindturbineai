@@ -1,0 +1,130 @@
+[
+  {
+    "item": "Rotor blade material",
+    "category": "Rotor",
+    "recommended_spec": "2-3 mm aluminum sheet or schedule-40 PVC; UV-resistant coating",
+    "approx_price_usd_estimate": "$80-220",
+    "example_purchase_link": "https://www.mcmaster.com/aluminum-sheets/",
+    "notes": "Aluminum is durable; PVC is lower-cost for prototypes."
+  },
+  {
+    "item": "Central shaft",
+    "category": "Shaft/Bearing",
+    "recommended_spec": "25-35 mm steel shaft, keyed where needed",
+    "approx_price_usd_estimate": "$60-180",
+    "example_purchase_link": "https://www.grainger.com/category/power-transmission/shafts-and-shaft-collars",
+    "notes": "Confirm bearing bore compatibility."
+  },
+  {
+    "item": "Top pillow block bearing",
+    "category": "Shaft/Bearing",
+    "recommended_spec": "Self-aligning pillow block matched to shaft diameter",
+    "approx_price_usd_estimate": "$30-90",
+    "example_purchase_link": "https://www.mcmaster.com/pillow-block-bearings/",
+    "notes": "Use weather shields if exposed."
+  },
+  {
+    "item": "Bottom pillow block bearing",
+    "category": "Shaft/Bearing",
+    "recommended_spec": "Heavy-duty pillow block, sealed if possible",
+    "approx_price_usd_estimate": "$35-110",
+    "example_purchase_link": "https://www.grainger.com/category/power-transmission/bearings/pillow-block-bearings",
+    "notes": "Bottom bearing carries major load."
+  },
+  {
+    "item": "Frame/tower tubing",
+    "category": "Tower/Mounting",
+    "recommended_spec": "Galvanized steel tube/square section (e.g., 40-60 mm)",
+    "approx_price_usd_estimate": "$120-450",
+    "example_purchase_link": "https://www.metalsdepot.com/steel-products/steel-square-tube",
+    "notes": "Match wall thickness to loading."
+  },
+  {
+    "item": "PMA / wind generator",
+    "category": "Generator",
+    "recommended_spec": "24 V permanent magnet alternator, 400 W-1 kW",
+    "approx_price_usd_estimate": "$180-650",
+    "example_purchase_link": "https://www.mwands.com/wind-turbine-generators/",
+    "notes": "Choose low cut-in RPM model for VAWT."
+  },
+  {
+    "item": "3-phase bridge rectifier",
+    "category": "Electrical",
+    "recommended_spec": "3-phase AC to DC bridge, current rating above max turbine output",
+    "approx_price_usd_estimate": "$15-60",
+    "example_purchase_link": "https://www.digikey.com/en/products/filter/diodes-bridge-rectifiers/299",
+    "notes": "Mount to heatsink when required."
+  },
+  {
+    "item": "Wind-rated charge controller",
+    "category": "Electrical",
+    "recommended_spec": "24 V wind controller with diversion/dump-load control",
+    "approx_price_usd_estimate": "$90-320",
+    "example_purchase_link": "https://www.amazon.com/s?k=wind+charge+controller+24v",
+    "notes": "Ensure wind-specific braking/diversion support."
+  },
+  {
+    "item": "Dump load resistor",
+    "category": "Electrical",
+    "recommended_spec": "24 V-compatible diversion load bank, power-rated above expected excess",
+    "approx_price_usd_estimate": "$45-180",
+    "example_purchase_link": "https://www.mwands.com/dump-loads.html",
+    "notes": "Mount away from flammable surfaces."
+  },
+  {
+    "item": "Battery bank",
+    "category": "Electrical",
+    "recommended_spec": "24 V bank (2x12 V LiFePO4 or AGM in series), 100-200 Ah typical",
+    "approx_price_usd_estimate": "$400-1600",
+    "example_purchase_link": "https://www.renogy.com/deep-cycle-batteries/",
+    "notes": "Follow battery chemistry-specific charging limits."
+  },
+  {
+    "item": "Disconnect switch / breaker",
+    "category": "Electrical",
+    "recommended_spec": "DC-rated disconnect and appropriately sized breaker/fuse",
+    "approx_price_usd_estimate": "$30-150",
+    "example_purchase_link": "https://www.digikey.com/en/products/filter/circuit-breakers/141",
+    "notes": "Place protection near source and battery."
+  },
+  {
+    "item": "Wiring/cable",
+    "category": "Electrical",
+    "recommended_spec": "UV-resistant copper cable, commonly 8-12 AWG depending run/current",
+    "approx_price_usd_estimate": "$80-260",
+    "example_purchase_link": "https://www.mcmaster.com/electrical-wire/",
+    "notes": "Size by ampacity and voltage drop."
+  },
+  {
+    "item": "Connectors/terminals",
+    "category": "Fasteners/Misc",
+    "recommended_spec": "Ring terminals, ferrules, weatherproof glands, adhesive heat-shrink",
+    "approx_price_usd_estimate": "$25-120",
+    "example_purchase_link": "https://www.digikey.com/en/products/filter/terminals/372",
+    "notes": "Use crimping tools matched to lug type."
+  },
+  {
+    "item": "Mounting hardware/fasteners",
+    "category": "Fasteners/Misc",
+    "recommended_spec": "Stainless or galvanized bolts/nuts/washers, lock nuts, threadlocker",
+    "approx_price_usd_estimate": "$40-180",
+    "example_purchase_link": "https://www.mcmaster.com/fasteners/",
+    "notes": "Re-torque after first week of operation."
+  },
+  {
+    "item": "Guy wire kit / tower anchors",
+    "category": "Tower/Mounting",
+    "recommended_spec": "Galvanized guy wires, turnbuckles, thimbles, rated anchors",
+    "approx_price_usd_estimate": "$90-300",
+    "example_purchase_link": "https://www.amazon.com/s?k=guy+wire+kit",
+    "notes": "Use 3 or 4-way symmetric guying for towers."
+  },
+  {
+    "item": "Weatherproof enclosure for electronics",
+    "category": "Electrical",
+    "recommended_spec": "NEMA/IP-rated outdoor enclosure with ventilation strategy",
+    "approx_price_usd_estimate": "$60-240",
+    "example_purchase_link": "https://www.grainger.com/category/electrical/electrical-boxes-covers-fittings/enclosures",
+    "notes": "Keep controller and rectifier dry and accessible."
+  }
+]

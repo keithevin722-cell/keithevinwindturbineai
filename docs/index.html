@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The DIY VAWT Book</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <h1>The DIY VAWT Book</h1>
+      <h2>Chapters</h2>
+      <ul>
+        <li><a href="index.html">Home / Contents</a></li>
+        <li><a href="chapters/01-introduction.html">1. Introduction</a></li>
+        <li><a href="chapters/02-design-sizing.html">2. Design &amp; Sizing</a></li>
+        <li><a href="chapters/03-tools-safety.html">3. Tools &amp; Safety</a></li>
+        <li><a href="chapters/04-parts-list.html">4. Parts List</a></li>
+        <li><a href="chapters/05-blade-rotor.html">5. Blade &amp; Rotor</a></li>
+        <li><a href="chapters/06-shaft-frame.html">6. Shaft, Bearings &amp; Frame</a></li>
+        <li><a href="chapters/07-generator-selection.html">7. Generator Selection</a></li>
+        <li><a href="chapters/08-electrical-system.html">8. Electrical &amp; Wiring</a></li>
+        <li><a href="chapters/09-assembly-installation.html">9. Assembly &amp; Installation</a></li>
+        <li><a href="chapters/10-testing-maintenance.html">10. Testing &amp; Maintenance</a></li>
+        <li><a href="chapters/11-glossary.html">11. Glossary</a></li>
+        <li><a href="chapters/12-further-reading.html">12. Further Reading</a></li>
+      </ul>
+    </aside>
+
+    <div class="content">
+      <button id="nav-toggle" class="mobile-toggle">Toggle chapter navigation</button>
+      <main>
+        <header class="page-header">
+          <h1>The DIY VAWT Book</h1>
+          <p>A practical, beginner-friendly guide to designing, sourcing, building, wiring, and maintaining a small hobbyist vertical-axis wind turbine (VAWT).</p>
+        </header>
+
+        <div class="warning">
+          <strong>Safety and legal disclaimer:</strong> This book is educational only and is not a substitute for licensed engineering, electrical, or structural advice. Spinning machinery, batteries, and electrical systems can cause severe injury, fire, or death. Always follow local electrical/building codes, permitting requirements, and manufacturer instructions.
+        </div>
+
+        <h2>Who this book is for</h2>
+        <p>If you are a hobbyist who wants to build a small VAWT (about 1.0-2.0 m rotor diameter, 400 W-1 kW class generator), this manual gives a full end-to-end path from concept to commissioning.</p>
+
+        <h2>Table of Contents</h2>
+        <ol class="chapter-links">
+          <li><a href="chapters/01-introduction.html">Introduction to VAWTs</a></li>
+          <li><a href="chapters/02-design-sizing.html">Design &amp; Sizing</a></li>
+          <li><a href="chapters/03-tools-safety.html">Tools &amp; Safety</a></li>
+          <li><a href="chapters/04-parts-list.html">Bill of Materials / Parts List</a></li>
+          <li><a href="chapters/05-blade-rotor.html">Blade &amp; Rotor Construction</a></li>
+          <li><a href="chapters/06-shaft-frame.html">Shaft, Bearings &amp; Frame/Tower Construction</a></li>
+          <li><a href="chapters/07-generator-selection.html">Generator/Alternator Selection &amp; Mounting</a></li>
+          <li><a href="chapters/08-electrical-system.html">Electrical System &amp; Wiring</a></li>
+          <li><a href="chapters/09-assembly-installation.html">Assembly &amp; Installation</a></li>
+          <li><a href="chapters/10-testing-maintenance.html">Testing, Commissioning &amp; Maintenance</a></li>
+          <li><a href="chapters/11-glossary.html">Appendix: Glossary of Terms</a></li>
+          <li><a href="chapters/12-further-reading.html">Appendix: Further Reading / Community Resources</a></li>
+        </ol>
+
+        <h2>Book baseline design target</h2>
+        <ul>
+          <li>Rotor type: small H-rotor or Savonius hybrid</li>
+          <li>Rotor size example: 1.5 m diameter × 1.8 m height</li>
+          <li>Generator class: 24 V PMA, roughly 400 W to 1 kW</li>
+          <li>Use case: battery charging and light off-grid loads</li>
+        </ul>
+
+        <p class="small">Need standalone sourcing data? See <a href="https://github.com/keithevin722-cell/keithevinwindturbineai/blob/main/data/parts-list.csv" class="file-link">parts-list.csv</a> and <a href="https://github.com/keithevin722-cell/keithevinwindturbineai/blob/main/data/parts-list.json" class="file-link">parts-list.json</a>.</p>
+      </main>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
