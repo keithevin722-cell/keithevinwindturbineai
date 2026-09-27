@@ -161,7 +161,7 @@ git checkout main
 git pull origin main
 git checkout -b update-build-docs
 git status
-git add README.md wind_turbine_ai tests
+git add README.md
 git commit -m "Update build and installation details"
 git push -u origin update-build-docs
 ```
