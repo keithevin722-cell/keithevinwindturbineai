@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f7f3">
+    <title>Wind Turbine AI</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+        color: #17231e;
+        background: #f4f7f3;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        background:
+          radial-gradient(ellipse at 86% 16%, #d8e9da 0, transparent 34rem),
+          linear-gradient(135deg, #f4f7f3, #fff 58%, #edf3ee);
+      }
+
+      main {
+        width: min(100%, 56rem);
+        padding: clamp(2rem, 8vw, 5rem);
+        border-left: 4px solid #e18142;
+        background: rgb(255 255 255 / 78%);
+        box-shadow: 0 24px 80px rgb(23 35 30 / 8%);
+        animation: arrive 500ms ease-out both;
+      }
+
+      p {
+        max-width: 34rem;
+        margin: 1.25rem 0 0;
+        color: #53645b;
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      h1 {
+        max-width: 12ch;
+        margin: 0;
+        font-size: clamp(2.75rem, 8vw, 5rem);
+        line-height: 1.02;
+        font-weight: 650;
+      }
+
+      @keyframes arrive {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Wind Turbine AI</h1>
+      <p>A workspace for exploring AI-powered wind turbine insights.</p>
+    </main>
+  </body>
+</html>
